@@ -47,8 +47,10 @@ N = 3
 s = [3,2,1]
 u = [2,3,4]
 
+#Complete graph list
 K=[graphs.CompleteGraph(i) for i in range(1,10)]
 
+#Spectrum of line graph of join of 3 complete graphs
 G = (s[0]*K[u[0]-1]).join((s[1]*K[u[1]-1]).join(s[2]*K[u[2]-1]))
 G = G.line_graph()
 L = G.adjacency_matrix()
@@ -57,6 +59,7 @@ print(L_spec)
 
 S = LineSpecOfJoinOfCompleteGraphs(N,s,u)
 
+#Merging multiple eigenvalues in S
 for i in range(len(S)):
     for j in range(i+1,len(S)):
         if S[i][0] == S[j][0]:
@@ -65,8 +68,8 @@ for i in range(len(S)):
             
 print(S)
 
+#Check the equality of S and L_spec
 fail = 0
-
 for s in S:
     if (L_spec.count(s[0]) != s[1]):
         print(s[0], "fail")
